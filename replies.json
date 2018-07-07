@@ -1,0 +1,21 @@
+[
+	{
+		"command": "rainbow",
+		"description": "makes a rainbow of hearts",
+		"reply": "❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️\n💛 💛 💛 💛 💛 💛 💛\n💚 💚 💚 💚 💚 💚 💚\n💙 💙 💙 💙 💙 💙 💙\n💜 💜 💜 💜 💜 💜 💜"
+	},
+	{
+		"command": "xyzzy",
+		"reply": "Nothing happens"
+	},
+	{
+		"command": "invite",
+		"description": "gives you the link to add BaeBot to a server",
+		"reply": "<https://discordapp.com/api/oauth2/authorize?client_id=423155396342054912&permissions=0&scope=bot>"
+	},
+	{
+		"command": "pridemojis",
+		"description": "sends links to some custom pride emojis",
+		"reply": "Asexual: <http://shippyprincess.tumblr.com/post/174092730272/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nBisexual: <http://shippyprincess.tumblr.com/post/174092834017/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nDemisexual: <http://shippyprincess.tumblr.com/post/174093043547/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nGay: <http://shippyprincess.tumblr.com/post/174093106432/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nLesbian: <http://shippyprincess.tumblr.com/post/174093219912/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nNonbinary: <http://shippyprincess.tumblr.com/post/174093283642/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nPansexual: <http://shippyprincess.tumblr.com/post/174093363457/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nPolysexual: <http://shippyprincess.tumblr.com/post/174093447417/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nPolyamory: <http://shippyprincess.tumblr.com/post/174093513287/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>\nTransgender: <http://shippyprincess.tumblr.com/post/174093560577/i-wanted-to-make-some-lgbtq-emojis-for-discord-i>"
+	}
+]
