@@ -16,7 +16,10 @@ bae.client.on("message", handleMessage);
 bae.client.login(token);
 
 function init() {
-	bae.commandList += "\n`ping` - replies \"pong\"";
+	const config = require("./config.json");
+	bae.admin = config.admin;
+	bae.logServer = config.logServer;
+	bae.logChannel = config.logChannel;
 
 	const replies = require("./replies.json");
 	for (let index = 0; index < replies.length; index++) {
@@ -101,9 +104,9 @@ bae.random = function(aMax) {
 
 bae.log = function(aString) {
 	console.log(aString);
-	this.client.guilds.get("465166048862404608").channels.get("465166274939453460").send(aString);
+	this.client.guilds.get(this.logServer).channels.get(this.logChannel).send(aString);
 }
 
 bae.isAdmin = function(aUser) {
-	return aUser.id === "110880316444381184";
+	return aUser.id === this.admin;
 }

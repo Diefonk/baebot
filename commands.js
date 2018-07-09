@@ -192,7 +192,8 @@ module.exports = [
 				aBae.log("Admin command attempted: " + aInput);
 				return;
 			}
-			process.exit();
+			aBae.log("Good night!");
+			aBae.client.destroy();
 		}
 	}/*, a work in progress
 	{
