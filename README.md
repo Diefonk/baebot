@@ -11,12 +11,13 @@ You will also need to change the IDs in config.json and put your bot's token som
 * **rainbow** - makes a rainbow of hearts
 * **invite** - gives you the link to add BaeBot to a server
 * **pridemojis** - sends links to some custom pride emojis
-* **card** - draws a card
 * **magic** - casts a random magical effect from https://centralia.aquest.com/downloads/NLRMEv2.pdf
 * **magicac** - casts wild magic from Anime Campaign (http://animecampaign.tk/)
+* **roulette** - spins a roulette wheel
+* **card** - draws a card
+* **roll** - rolls die of specified size, e.g. *roll 20* or *roll 73*
 * **rate** - rates anything
 * **8ball** - answers your question
-* **roll** - rolls die of specified size, e.g. *roll 20* or *roll 73*
 * **say** - repeats your message
 * **shout** - sends your message to BaeBot's creator
 

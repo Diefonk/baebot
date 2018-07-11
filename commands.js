@@ -1,15 +1,44 @@
 module.exports = [
 	{
+		command: "roll",
+		description: "rolls die of specified size, e.g. `roll 20` or `roll 73`",
+		handleMessage: function(aMessage, aInput, aBae) {
+			var output;
+			var dieSize = 0;
+			if (aInput.length > 5) {
+				dieSize = Number(aInput.substring(5, aInput.length));
+			}
+			if (!isNaN(dieSize) && dieSize > 0) {
+				output = "🎲 " + aMessage.author.username + " rolls a **`" + (aBae.random(dieSize) + 1) + "`**";
+			} else {
+				output = "The `roll` command requires a number (larger than 0)\nFor example: `roll " + (aBae.random(100) + 1) + "`";
+			}
+			aMessage.channel.send(output);
+		}
+	},
+	{
 		command: "rate",
 		description: "rates anything",
+		vars: {
+			words: [
+				["I'd give ", " a "],
+				["I think ", " deserves a solid "],
+				["Hmm... ", " gets a "],
+				["That's easy, ", " should definitely have a "],
+				["Tricky, but I'd say ", " should not get more than "],
+				["My programming tells me ", " is worth exactly "],
+				["If it was up to me, which it is, ", " would get a strong "],
+				["Everyone knows ", " is valued at "]
+			]
+		},
 		handleMessage: function(aMessage, aInput, aBae) {
 			var output;
 			if (aInput.length > 5) {
 				const input = aInput.substring(5, aInput.length);
-				//TODO - make more interesting
 				const total = aBae.random(100) + 1;
 				const rating = aBae.random(total + 1);
-				output = "📊 I'd give " + input + " a " + rating + "/" + total;
+				const words = this.vars.words[aBae.random(this.vars.words.length)];
+				output = "📊 " + words[0] + input + words[1] + rating + "/" + total;
 			} else {
 				output = "The `rate` command requires something to rate\nFor example: `rate " + aMessage.author.username + "`";
 			}
@@ -32,6 +61,18 @@ module.exports = [
 				"I have no idea",
 				"Hmm...",
 				"Why would you ask that?"
+			],
+			adjectives: [
+				" stupid",
+				" cute",
+				" gay",
+				" the best",
+				" adorkable",
+				" a dweeb",
+				" real",
+				" the meaning of life",
+				" a pigeon",
+				" even reading this"
 			]
 		},
 		handleMessage: function(aMessage, aInput, aBae) {
@@ -39,24 +80,8 @@ module.exports = [
 			if (aInput.length > 6) {
 				output = "🎱 " + this.vars.answers[aBae.random(this.vars.answers.length)];
 			} else {
-				output = "The `8ball` command requires a question\nFor example: `8ball is " + aMessage.author.username + " stupid?`";
-			}
-			aMessage.channel.send(output);
-		}
-	},
-	{
-		command: "roll",
-		description: "rolls die of specified size, e.g. `roll 20` or `roll 73`",
-		handleMessage: function(aMessage, aInput, aBae) {
-			var output;
-			var dieSize = 0;
-			if (aInput.length > 5) {
-				dieSize = Number(aInput.substring(5, aInput.length));
-			}
-			if (!isNaN(dieSize) && dieSize > 0) {
-				output = "🎲 " + aMessage.author.username + " rolled a `" + (aBae.random(dieSize) + 1) + "`";
-			} else {
-				output = "The `roll` command requires a number (larger than 0)\nFor example: `roll " + (aBae.random(100) + 1) + "`";
+				output = "The `8ball` command requires a question\nFor example: `8ball is ";
+				output += aMessage.author.username + this.vars.adjectives[aBae.random(this.vars.adjectives.length)]+ "?`";
 			}
 			aMessage.channel.send(output);
 		}
@@ -87,6 +112,7 @@ module.exports = [
 			}
 		}
 	},
+	//Admin commands
 	{
 		command: "servers",
 		handleMessage: function(aMessage, aInput, aBae) {
