@@ -13,6 +13,8 @@ bae.commandList = "Available commands:";
 
 bae.client.on("ready", init);
 bae.client.on("message", handleMessage);
+bae.client.on("guildCreate", joinedServer);
+bae.client.on("guildDelete", leftServer);
 bae.client.login(token);
 
 function init() {
@@ -93,6 +95,14 @@ function handleMessage(aMessage) {
 			bae.commands[command].handleMessage(aMessage, input, bae);
 		}
 	}
+}
+
+function joinedServer(aServer) {
+	bae.log("I just joined a server: " + aServer.name);
+}
+
+function leftServer(aServer) {
+	bae.log("I just left a server: " + aServer.name);
 }
 
 bae.random = function(aMax) {
