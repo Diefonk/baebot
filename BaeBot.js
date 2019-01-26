@@ -74,9 +74,6 @@ function handleMessage(aMessage) {
 	}
 
 	const input = aMessage.content.substring(bae.prefix.length, aMessage.content.length);
-	if (!bae.isAdmin(aMessage.author)) {
-		bae.log("Command received: " + input);
-	}
 	var command = input.toLowerCase();
 
 	if (command === "ping") {
