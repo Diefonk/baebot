@@ -104,8 +104,22 @@ module.exports = [
 		description: "sends your message to BaeBot's creator",
 		handleMessage: function(aMessage, aInput, aBae) {
 			if (aInput.length > 6) {
-				aInput = aInput.substring(6, aInput.length);
-				aBae.client.users.get("110880316444381184").send("\"" + aInput + "\"" + " - " + aMessage.author.username + "#" + aMessage.author.discriminator);
+				var message = "\"";
+				message += aInput.substring(6, aInput.length);
+				message += "\" - ";
+				message += aMessage.author.username;
+				message += "#";
+				message += aMessage.author.discriminator;
+				if (aMessage.guild === null) {
+					message += " ;dm ";
+					message += aMessage.author.id;
+				} else {
+					message += " ;msg ";
+					message += aMessage.guild.id;
+					message += " ";
+					message += aMessage.channel.id;
+				}
+				aBae.client.users.get(aBae.admin).send(message);
 				aMessage.react("✅");
 			} else {
 				aMessage.channel.send("The `shout` command needs something to shout\nFor example: `shout Hello from the other side`");
@@ -113,6 +127,74 @@ module.exports = [
 		}
 	},
 	//Admin commands
+	{
+		command: "dm",
+		handleMessage: function(aMessage, aInput, aBae) {
+			if (!aBae.isAdmin(aMessage.author)) {
+				aBae.log("Admin command attempted: " + aInput);
+				return;
+			}
+			if (aInput.length > 3) {
+				aInput = aInput.substring(3, aInput.length);
+				var spaceIndex = aInput.indexOf(" ");
+				if (spaceIndex <= 0) {
+					aMessage.react("❌");
+					aMessage.channel.send("I need a message to send");
+					return;
+				}
+				var user = aInput.substring(0, spaceIndex);
+				aInput = aInput.substring(spaceIndex + 1, aInput.length);
+				if (aBae.client.users.has(user)) {
+					aBae.client.users.get(user).send(aInput);
+					aMessage.react("✅");
+				} else {
+					aMessage.react("❌");
+					aMessage.channel.send("I need a valid user id");
+				}
+			} else {
+				aMessage.react("❌");
+				aMessage.channel.send("I need a user id and a message");
+			}
+		}
+	},
+	{
+		command: "msg",
+		handleMessage: function(aMessage, aInput, aBae) {
+			if (!aBae.isAdmin(aMessage.author)) {
+				aBae.log("Admin command attempted: " + aInput);
+				return;
+			}
+			if (aInput.length > 4) {
+				aInput = aInput.substring(4, aInput.length);
+				var spaceIndex = aInput.indexOf(" ");
+				if (spaceIndex <= 0) {
+					aMessage.react("❌");
+					aMessage.channel.send("I need a channel id and a message");
+					return;
+				}
+				var server = aInput.substring(0, spaceIndex);
+				aInput = aInput.substring(spaceIndex + 1, aInput.length);
+				var spaceIndex = aInput.indexOf(" ");
+				if (spaceIndex <= 0 || !aBae.client.guilds.has(server)) {
+					aMessage.react("❌");
+					aMessage.channel.send("I need a valid server id and a message");
+					return;
+				}
+				var channel = aInput.substring(0, spaceIndex);
+				aInput = aInput.substring(spaceIndex + 1, aInput.length);
+				if (aBae.client.guilds.get(server).channels.has(channel)) {
+					aBae.client.guilds.get(server).channels.get(channel).send(aInput);
+					aMessage.react("✅");
+				} else {
+					aMessage.react("❌");
+					aMessage.channel.send("I need a valid channel id");
+				}
+			} else {
+				aMessage.react("❌");
+				aMessage.channel.send("I need a server id, a channel id, and a message");
+			}
+		}
+	},
 	{
 		command: "servers",
 		handleMessage: function(aMessage, aInput, aBae) {
