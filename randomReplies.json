@@ -10007,7 +10007,7 @@
 	},
 	{
 		"command": "magicac",
-		"description": "casts wild magic from Anime Campaign (<http://animecampaign.tk/>)",
+		"description": "casts wild magic from Anime Campaign (<https://epithet.glitch.me>)",
 		"replies": [
 			"Nice crit fail. Caster reveals their epithet or core word and loses 1d4 proficiency.",
 			"Receive night vision.",
@@ -10315,7 +10315,7 @@
 		"command": "roulette",
 		"description": "spins a roulette wheel",
 		"replies": [
-			"<:green_circle:466648006507233281> **0**",
+			"<:green_circle:> **0**",
 			":red_circle: **32**",
 			":black_circle: **15**",
 			":red_circle: **19**",

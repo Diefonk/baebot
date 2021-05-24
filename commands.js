@@ -115,15 +115,25 @@ module.exports = [
 					message += aMessage.author.id;
 				} else {
 					message += " ;msg ";
-					message += aMessage.guild.id;
-					message += " ";
 					message += aMessage.channel.id;
 				}
-				aBae.client.users.get(aBae.admin).send(message);
+				aBae.dm(aBae.admin, message);
 				aMessage.react("✅");
 			} else {
 				aMessage.channel.send("The `shout` command needs something to shout\nFor example: `shout Hello from the other side`");
 			}
+		}
+	},
+	{
+		command: "about",
+		description: "some information about BaeBot",
+		handleMessage: function(aMessage, aInput, aBae) {
+			let output = "Hello! 👋\nMy name is **BaeBot**, ";
+			output += "and I was created by **Diefonk** (<https://diefonk.net>).";
+			output += "\nMy source code is available at <https://github.com/Diefonk/baebot>.";
+			output += "\nI'm a member of **" + aBae.client.guilds.cache.size + "** servers.";
+			output += "\nYou can invite me to a server by using this link: <https://discordapp.com/api/oauth2/authorize?client_id=423155396342054912&permissions=0&scope=bot>";
+			aMessage.channel.send(output);
 		}
 	},
 	//Admin commands
@@ -144,13 +154,8 @@ module.exports = [
 				}
 				var user = aInput.substring(0, spaceIndex);
 				aInput = aInput.substring(spaceIndex + 1, aInput.length);
-				if (aBae.client.users.has(user)) {
-					aBae.client.users.get(user).send(aInput);
-					aMessage.react("✅");
-				} else {
-					aMessage.react("❌");
-					aMessage.channel.send("I need a valid user id");
-				}
+				aBae.dm(user, aInput);
+				aMessage.react("✅");
 			} else {
 				aMessage.react("❌");
 				aMessage.channel.send("I need a user id and a message");
@@ -172,56 +177,27 @@ module.exports = [
 					aMessage.channel.send("I need a channel id and a message");
 					return;
 				}
-				var server = aInput.substring(0, spaceIndex);
-				aInput = aInput.substring(spaceIndex + 1, aInput.length);
-				var spaceIndex = aInput.indexOf(" ");
-				if (spaceIndex <= 0 || !aBae.client.guilds.has(server)) {
-					aMessage.react("❌");
-					aMessage.channel.send("I need a valid server id and a message");
-					return;
-				}
 				var channel = aInput.substring(0, spaceIndex);
 				aInput = aInput.substring(spaceIndex + 1, aInput.length);
-				if (aBae.client.guilds.get(server).channels.has(channel)) {
-					aBae.client.guilds.get(server).channels.get(channel).send(aInput);
-					aMessage.react("✅");
-				} else {
-					aMessage.react("❌");
-					aMessage.channel.send("I need a valid channel id");
-				}
+				aBae.msg(channel, aInput);
+				aMessage.react("✅");
 			} else {
 				aMessage.react("❌");
-				aMessage.channel.send("I need a server id, a channel id, and a message");
+				aMessage.channel.send("I need a channel id, and a message");
 			}
 		}
 	},
 	{
-		command: "servers",
+		command: "statusp",
 		handleMessage: function(aMessage, aInput, aBae) {
 			if (!aBae.isAdmin(aMessage.author)) {
-				aBae.log("Admin command attempted: " + aInput);
 				return;
 			}
-			var output = "I'm a member of " + aBae.client.guilds.size + " servers:";
-			var servers = aBae.client.guilds.array();
-			for (let index = 0; index < servers.length; index++) {
-				output += "\n" + servers[index].name;
-			}
-			aMessage.channel.send(output);
-		}
-	},
-	{
-		command: "play",
-		handleMessage: function(aMessage, aInput, aBae) {
-			if (!aBae.isAdmin(aMessage.author)) {
-				aBae.log("Admin command attempted: " + aInput);
-				return;
-			}
-			if (aInput.length > 5) {
-				aInput = aInput.substring(5, aInput.length);
+			if (aInput.length > 7) {
+				aInput = aInput.substring(7, aInput.length);
 				aBae.client.user.setPresence({
 					status: "online",
-					game: {
+					activity: {
 						name: aInput,
 						type: "PLAYING"
 					}
@@ -230,43 +206,16 @@ module.exports = [
 		}
 	},
 	{
-		command: "stream",
+		command: "statusl",
 		handleMessage: function(aMessage, aInput, aBae) {
 			if (!aBae.isAdmin(aMessage.author)) {
-				aBae.log("Admin command attempted: " + aInput);
-				return;
-			}
-			if (aInput.length > 7) {
-				aInput = aInput.substring(7, aInput.length);
-				var spaceIndex = aInput.indexOf(" ");
-				if (spaceIndex <= 0) {
-					return;
-				}
-				var user = aInput.substring(0, spaceIndex);
-				aInput = aInput.substring(spaceIndex + 1, aInput.length);
-				aBae.client.user.setPresence({
-					status: "online",
-					game: {
-						name: aInput,
-						url: "https://twitch.tv/" + user,
-						type: "STREAMING"
-					}
-				});
-			}
-		}
-	},
-	{
-		command: "listen",
-		handleMessage: function(aMessage, aInput, aBae) {
-			if (!aBae.isAdmin(aMessage.author)) {
-				aBae.log("Admin command attempted: " + aInput);
 				return;
 			}
 			if (aInput.length > 7) {
 				aInput = aInput.substring(7, aInput.length);
 				aBae.client.user.setPresence({
 					status: "online",
-					game: {
+					activity: {
 						name: aInput,
 						type: "LISTENING"
 					}
@@ -275,17 +224,16 @@ module.exports = [
 		}
 	},
 	{
-		command: "watch",
+		command: "statusw",
 		handleMessage: function(aMessage, aInput, aBae) {
 			if (!aBae.isAdmin(aMessage.author)) {
-				aBae.log("Admin command attempted: " + aInput);
 				return;
 			}
-			if (aInput.length > 6) {
-				aInput = aInput.substring(6, aInput.length);
+			if (aInput.length > 7) {
+				aInput = aInput.substring(7, aInput.length);
 				aBae.client.user.setPresence({
 					status: "online",
-					game: {
+					activity: {
 						name: aInput,
 						type: "WATCHING"
 					}
@@ -294,59 +242,21 @@ module.exports = [
 		}
 	},
 	{
-		command: "exit",
+		command: "statusc",
 		handleMessage: function(aMessage, aInput, aBae) {
 			if (!aBae.isAdmin(aMessage.author)) {
-				aBae.log("Admin command attempted: " + aInput);
 				return;
 			}
-			aBae.log("Good night!");
-			aBae.client.destroy();
-		}
-	}/*, a work in progress
-	{
-		command: "paint",
-		vars: {
-			url: "http://colormind.io/api/",
-			data: { model: "default" },
-			XMLHttpRequest: null,
-			PNGImage: null,
-			paintPicture: function(aPalette) {
-				var palette = [];
-				for (let index = 0; index < aPalette.length; index++) {
-					palette[index] = {
-						red: aPalette[index][0],
-						green: aPalette[index][1],
-						blue: aPalette[index][2],
-						alpha: 255
+			if (aInput.length > 7) {
+				aInput = aInput.substring(7, aInput.length);
+				aBae.client.user.setPresence({
+					status: "online",
+					activity: {
+						name: aInput,
+						type: "COMPETING"
 					}
-				}
-				var image = this.PNGImage.createImage(500, 500);
-				image.fillRect(0, 0, 500, 500, palette[0]);
-				image.writeImage('image.png', function (err) {
-					if (err) throw err;
-					console.log('Written to the file');
 				});
 			}
-		},
-		handleMessage: function(aMessage, aInput, aBae) {
-			if (this.vars.XMLHttpRequest === null) {
-				this.vars.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-				this.vars.PNGImage = require('pngjs-image');
-			}
-			var xhr = new this.vars.XMLHttpRequest();
-			var vars = this.vars;
-			xhr.onreadystatechange = function() {
-				if(xhr.readyState == 4 && xhr.status == 200) {
-					var palette = JSON.parse(xhr.responseText).result;
-					aMessage.channel.send(JSON.stringify(palette));
-					vars.paintPicture(palette);
-					//aMessage.channel.send('This is an embed', { files: ["./image.png"] });
-					aMessage.channel.sendFile("image.png");
-				}
-			}
-			xhr.open("POST", vars.url, true);
-			xhr.send(JSON.stringify(vars.data));
 		}
-	}*/
+	}
 ]

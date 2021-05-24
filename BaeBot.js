@@ -7,21 +7,18 @@ bae.reactions = require("./reactions.json");
 bae.replies = {};
 bae.randomReplies = {};
 bae.commands = {};
-bae.prefix = ";";
 bae.helpCommand = "help";
 bae.commandList = "Available commands:";
 
 bae.client.on("ready", init);
 bae.client.on("message", handleMessage);
-bae.client.on("guildCreate", joinedServer);
-bae.client.on("guildDelete", leftServer);
 bae.client.login(token);
 
 function init() {
 	const config = require("./config.json");
 	bae.admin = config.admin;
-	bae.logServer = config.logServer;
 	bae.logChannel = config.logChannel;
+	bae.prefix = config.prefix;
 
 	const replies = require("./replies.json");
 	for (let index = 0; index < replies.length; index++) {
@@ -57,7 +54,7 @@ function init() {
 
 	bae.client.user.setPresence({
 		status: "online",
-		game: {
+		activity: {
 			name: bae.prefix + bae.helpCommand
 		}
 	});
@@ -66,11 +63,32 @@ function init() {
 
 function handleMessage(aMessage) {
 	if (aMessage.content.substring(0, bae.prefix.length) !== bae.prefix) {
+		const message = aMessage.content.toLowerCase();
 		for (let index = 0; index < bae.reactions.length; index++) {
-			if (aMessage.content.toLowerCase().includes(bae.reactions[index].word))
+			if (message.includes(bae.reactions[index].word))
 			{
-				aMessage.react(bae.reactions[index].emojis[bae.random(bae.reactions[index].emojis.length)]);
+				aMessage.react(bae.reactions[index].emoji[bae.random(bae.reactions[index].emoji.length)]);
 			}
+		}
+		if (message.includes("gay")) {
+			aMessage.react(bae.reactions[1].emoji[bae.random(bae.reactions[1].emoji.length)]);
+		}
+		if (message.includes("ace")) {
+			aMessage.react(bae.reactions[5].emoji[bae.random(bae.reactions[5].emoji.length)]);
+		}
+		if (message.includes("bi") && !message.includes("binary") && !message.includes("lesbian")) {
+			aMessage.react(bae.reactions[6].emoji[bae.random(bae.reactions[6].emoji.length)]);
+		}
+		if (message.includes("wlw")) {
+			aMessage.react(bae.reactions[14].emoji[bae.random(bae.reactions[14].emoji.length)]);
+		}
+		if (message.includes("enby") || message.includes("non-binary")) {
+			aMessage.react(bae.reactions[15].emoji[bae.random(bae.reactions[15].emoji.length)]);
+		}
+		if (message.includes("demi") && !(message.includes("demigender") ||
+			message.includes("demiromantic") || message.includes("demisexual"))) {
+			let index = bae.random(3) + 7;
+			aMessage.react(bae.reactions[index].emoji[bae.random(bae.reactions[index].emoji.length)]);
 		}
 		return;
 	}
@@ -97,23 +115,27 @@ function handleMessage(aMessage) {
 	}
 }
 
-function joinedServer(aServer) {
-	bae.log("I just joined a server: " + aServer.name);
-}
-
-function leftServer(aServer) {
-	bae.log("I just left a server: " + aServer.name);
-}
-
 bae.random = function(aMax) {
 	return Math.floor(Math.random() * aMax);
 }
 
 bae.log = function(aString) {
 	console.log(aString);
-	this.client.guilds.get(this.logServer).channels.get(this.logChannel).send(aString);
+	this.msg(this.logChannel, aString);
 }
 
 bae.isAdmin = function(aUser) {
 	return aUser.id === this.admin;
+}
+
+bae.msg = function(aChannel, aString) {
+	this.client.channels.fetch(aChannel).then(channel => {
+		channel.send(aString);
+	});
+}
+
+bae.dm = function(aUser, aString) {
+	this.client.users.fetch(aUser).then(user => {
+		user.send(aString);
+	});
 }

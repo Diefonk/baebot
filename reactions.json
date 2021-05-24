@@ -1,11 +1,16 @@
 [
 	{
 		"word": "bae",
-		"emojis": [
+		"emoji": [
+			"❤️",
+			"🧡",
 			"💛",
 			"💚",
 			"💙",
 			"💜",
+			"🖤",
+			"🤍",
+			"🤎",
 			"💕",
 			"💞",
 			"💓",
@@ -16,91 +21,141 @@
 		]
 	},
 	{
-		"word": "gay",
-		"emojis": [
+		"word": "rainbow",
+		"emoji": [
 			"🌈",
 			"🏳️‍🌈",
-			":gay_sparkles:466714169731842049",
-			":gay_heart:466714170038026260"
+			":rainbow_heart:774295469978812416",
+			":rainbow_star:774295469760577587",
+			":progress_flag:774295652409933884"
 		]
 	},
 	{
-		"word": "lesbian",
-		"emojis": [
-			":lesbian_heart:466714169756876811",
-			":lesbian_sparkles:466714170117586954"
+		"word": "trans",
+		"emoji": [
+			"🏳️‍⚧️",
+			":transgender_heart:774295470054178826",
+			":transgender_star:774295470217756672"
 		]
 	},
 	{
-		"word": "transgender",
-		"emojis": [
-			":trans_heart:466714170377895936",
-			":trans_sparkles:466714170772029471"
+		"word": "agender",
+		"emoji": [
+			":agender_flag:774295468762726501",
+			":agender_heart:774295468414861313",
+			":agender_star:774295468741099530"
 		]
 	},
 	{
-		"word": "polysexual",
-		"emojis": [
-			":poly_sparkles:466714170491011072",
-			":poly_heart:466714170092683275"
-		]
-	},
-	{
-		"word": "pansexual",
-		"emojis": [
-			":pan_sparkles:466714171497644055",
-			":pan_heart:466714170474364938"
-		]
-	},
-	{
-		"word": "nonbinary",
-		"emojis": [
-			":nonbinary_sparkles:466714170411188254",
-			":nonbinary_heart:466714170369245184",
-			":nyanbinary:487666865880170496"
-		]
-	},
-	{
-		"word": "enby",
-		"emojis": [
-			":nonbinary_sparkles:466714170411188254",
-			":nonbinary_heart:466714170369245184",
-			":nyanbinary:487666865880170496"
-		]
-	},
-	{
-		"word": "demisexual",
-		"emojis": [
-			":demi_sparkles:466714170143014957",
-			":demi_heart:466714169841025035"
-		]
-	},
-	{
-		"word": "bisexual",
-		"emojis": [
-			":bi_sparkles:466714169807470614",
-			":bi_heart:466714169618595843"
+		"word": "aro",
+		"emoji": [
+			":aromantic_flag:774295468746211398",
+			":aromantic_heart:774295468510937201",
+			":aromantic_star:774295468792348732"
 		]
 	},
 	{
 		"word": "asexual",
-		"emojis": [
-			":ace_sparkles:466714169962659850",
-			":ace_heart:466714170000277514"
+		"emoji": [
+			":asexual_flag:774295468548161599",
+			":asexual_heart:774295468892880936",
+			":asexual_star:774295468502810646"
 		]
 	},
 	{
-		"word": "polyamory",
-		"emojis": [
-			":polyamory_sparkles:466714170453262336",
-			":polyamory_heart:466714170172112909"
+		"word": "bisexual",
+		"emoji": [
+			":bisexual_flag:774295468850282537",
+			":bisexual_heart:774295468913197056",
+			":bisexual_star:774295468997345310"
 		]
 	},
 	{
-		"word": "polyamorous",
-		"emojis": [
-			":polyamory_sparkles:466714170453262336",
-			":polyamory_heart:466714170172112909"
+		"word": "demigender",
+		"emoji": [
+			":demigender_flag:774295468955140106",
+			":demigender_heart:774295468997869579",
+			":demigender_star:774295469240483880"
+		]
+	},
+	{
+		"word": "demiromantic",
+		"emoji": [
+			":demiromantic_flag:774295469172981780",
+			":demiromantic_heart:774295469219119125",
+			":demiromantic_star:774295468888293458"
+		]
+	},
+	{
+		"word": "demisexual",
+		"emoji": [
+			":demisexual_flag:774295469236027412",
+			":demisexual_heart:774295469316636682",
+			":demisexual_star:774295469068517377"
+		]
+	},
+	{
+		"word": "mlm",
+		"emoji": [
+			":gay_flag:774295469312180285",
+			":gay_heart:774295469329219604",
+			":gay_star:774295469324238899"
+		]
+	},
+	{
+		"word": "genderfluid",
+		"emoji": [
+			":genderfluid_flag:774295469316243466",
+			":genderfluid_heart:774295469316374608",
+			":genderfluid_star:774295469337083946"
+		]
+	},
+	{
+		"word": "genderqueer",
+		"emoji": [
+			":genderqueer_flag:774295469366181938",
+			":genderqueer_heart:774295469156335618",
+			":genderqueer_star:774295469412843530"
+		]
+	},
+	{
+		"word": "intersex",
+		"emoji": [
+			":intersex_flag:774295469638942750",
+			":intersex_heart:774295469895450654",
+			":intersex_star:774295469694255134"
+		]
+	},
+	{
+		"word": "lesbian",
+		"emoji": [
+			":lesbian_flag:774295469739212800",
+			":lesbian_heart:774295469932937276",
+			":lesbian_star:774295469932150864"
+		]
+	},
+	{
+		"word": "nonbinary",
+		"emoji": [
+			":nonbinary_flag:774295469748518962",
+			":nonbinary_heart:774295469399736332",
+			":nonbinary_star:774295469844725791"
+		]
+	},
+	{
+		"word": "pan",
+		"emoji": [
+			":pansexual_flag:774295469840531467",
+			":pansexual_heart:774295469908033576",
+			":pansexual_star:774295470041727006"
+		]
+	},
+	{
+		"word": "poly",
+		"emoji": [
+			":polyamorous_flag:774295469761364019",
+			":polyamorous_heart:774295470075936808",
+			":polyamorous_star:774295470079475752"
 		]
 	}
 ]
