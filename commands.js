@@ -128,11 +128,12 @@ module.exports = [
 		command: "about",
 		description: "some information about BaeBot",
 		handleMessage: function(aMessage, aInput, aBae) {
-			let output = "Hello! 👋\nMy name is **BaeBot**, ";
-			output += "and I was created by **Diefonk** (<https://diefonk.net>).";
-			output += "\nMy source code is available at <https://github.com/Diefonk/baebot>.";
-			output += "\nI'm a member of **" + aBae.client.guilds.cache.size + "** servers.";
-			output += "\nYou can invite me to a server by using this link: <https://discordapp.com/api/oauth2/authorize?client_id=423155396342054912&permissions=0&scope=bot>";
+			let output = "👋 Hello!\n💖 My name is **BaeBot**, ";
+			output += "and I was created by **Diefonk** (<https://diefonk.net>)";
+			output += "\n💾 My source code is available at <https://github.com/Diefonk/baebot>";
+			output += "\n📷 My profile picture was made with <https://zephyo.itch.io/live-portrait-maker>";
+			output += "\n💬 I'm a member of **" + aBae.client.guilds.cache.size + "** servers";
+			output += "\n💌 You can invite me to a server by using this link: <https://discordapp.com/api/oauth2/authorize?client_id=423155396342054912&permissions=0&scope=bot>";
 			aMessage.channel.send(output);
 		}
 	},
