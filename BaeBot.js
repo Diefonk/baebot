@@ -70,7 +70,7 @@ function handleMessage(aMessage) {
 				aMessage.react(bae.reactions[index].emoji[bae.random(bae.reactions[index].emoji.length)]);
 			}
 		}
-		if (message.includes("gay")) {
+		if (message.includes("gay") || message.includes("pride")) {
 			aMessage.react(bae.reactions[1].emoji[bae.random(bae.reactions[1].emoji.length)]);
 		}
 		if (message.includes("ace")) {
